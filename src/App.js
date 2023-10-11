@@ -7,31 +7,33 @@ function App() {
   const [firstNameError, setfirstNameError] = useState({})
   const [lastName, setLastName] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
-  const [mobileError , setMobileError] = useState({})
+  const [mobileError, setMobileError] = useState({})
   const [age, setAge] = useState('');
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState({})
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState({});
 
- const validateMobile = (mobileNumber)=>{
-  //  const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
-   const regex  = /^\d{10}$/
-  if (mobileNumber.match(regex)) {
-    setMobileError({ msg: "done" })
+  const validateMobile = (mobileNumber) => {
+    //  const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
+    const regex = /^\d{10}$/
+    if (mobileNumber.match(regex)) {
+      setMobileError({ msg: "done" })
+    }
+    else {
+      setMobileError({ msg: "invalid mobile num" })
+    }
   }
-  else{
-    setMobileError({ msg: "invalid mobile num" })
-  }
- }
 
   const validateEmail = (email) => {
+    // const isValidEmail  =/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
     const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
     if (email.length <= 0) {
       setEmailError({ msg: "Email is required." })
     }
     if (email.match(isValidEmail)) {
-      setEmailError({ msg: "done" })
+      setEmailError({ msg: "" })
     } else {
       setEmailError({ msg: " Please enter valid mail" })
     }
@@ -41,10 +43,9 @@ function App() {
     var lowerCase = /[a-z]/g;
     var upperCase = /[A-Z]/g;
     var numbers = /[0-9]/g;
-    if(password.length<=0)
-    {
+    if (password.length <= 0) {
       setPasswordError({ msg: "Please enter Password" });
-    }else if (!password.match(lowerCase)) {
+    } else if (!password.match(lowerCase)) {
       setPasswordError({ msg: "Password should contains lowercase letters!" });
     } else if (!password.match(upperCase)) {
       setPasswordError({ msg: "Password should contain uppercase letters!" });
@@ -61,15 +62,14 @@ function App() {
     if (firstName.length <= 0) {
       setfirstNameError({ msg: "First name is required." })
     }
-    else{
+    else {
       setfirstNameError({ msg: "done" })
     }
     validateEmail(email)
     handlePassword(password)
-    validateMobile (mobileNumber)
-    if(firstNameError.msg=="done" && mobileError.msg=="done" && 
-    emailError.msg=="done" && passwordError.msg=="done")
-    {
+    validateMobile(mobileNumber)
+    if (firstNameError.msg == "done" && mobileError.msg == "done" &&
+      emailError.msg == "done" && passwordError.msg == "done") {
       alert("form submited sucessfully")
     }
   }
@@ -99,6 +99,8 @@ function App() {
               <input type="email" placeholder="enter email"
                 onChange={(e) => {
                   setEmail(e.target.value)
+                  setEmailError({ msg: "" })
+                  
                 }} value={email} />
               <label style={{ fontWeight: 'bold', color: 'red' }}>{emailError.msg}</label>
               <input type="password" placeholder="enter password"
