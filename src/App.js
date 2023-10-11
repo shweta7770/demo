@@ -100,6 +100,7 @@ function App() {
                 onChange={(e) => {
                   setEmail(e.target.value)
                   setEmailError({ msg: "" })
+                  
                 }} value={email} />
               <label style={{ fontWeight: 'bold', color: 'red' }}>{emailError.msg}</label>
               <input type="password" placeholder="enter password"

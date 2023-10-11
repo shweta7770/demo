@@ -32,6 +32,8 @@ const LearnRegex = () => {
   // let result = regex.test(text)
   //   ^ - It is the start of the string.
 
+
+  
   // [a-z0-9]+ - Any character between a to z and 0 to 9 at the start of the string.
 
   // @ - The string should contains ‘@’ character after some alphanumeric characters.
@@ -59,7 +61,7 @@ const LearnRegex = () => {
   let patteren = /6/g
   let resu = str.match(patteren).length
   console.log(resu);
-  
+
   return (
     <div>
 
